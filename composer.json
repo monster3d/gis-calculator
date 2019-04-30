@@ -4,10 +4,10 @@
     "description": "Simple gis calculator",
     "keywords": ["lib", "library"],
     "license": "MIT",
-    "homepage": "https://github.com/",
+    "homepage": "https://github.com/monster3d/gis-calculator",
     "support": {
-      "issues": "https://github.com/",
-      "source": "https://github.com/"
+      "issues": "https://github.com/monster3d/gis-calculator/issues/new",
+      "source": "https://github.com/monster3d/gis-calculator"
     },
     "authors": [
       {
