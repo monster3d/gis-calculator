@@ -1,0 +1,34 @@
+{
+    "name": "Gis Calculator",
+    "type": "library",
+    "description": "Simple gis calculator",
+    "keywords": ["lib", "library"],
+    "license": "MIT",
+    "homepage": "https://github.com/",
+    "support": {
+      "issues": "https://github.com/",
+      "source": "https://github.com/"
+    },
+    "authors": [
+      {
+        "name": "Nikolay Baev aka Monster3D",
+        "email": "gametester3d@gmail.com"
+      }
+    ],
+    "require": {
+      "php": ">=7.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "GisCalculator\\": "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Tests\\": "tests/"
+      }
+    },
+    "require-dev": {
+      "phpunit/phpunit": "^7"
+    }
+  }
