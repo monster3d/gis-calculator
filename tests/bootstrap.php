@@ -1,7 +1,3 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nikolay
- * Date: 30/04/2019
- * Time: 21:03
- */
+
+include __DIR__ . '/../vendor/autoload.php';
