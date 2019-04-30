@@ -1,15 +1,42 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nikolay
- * Date: 30/04/2019
- * Time: 19:32
- */
 
 namespace GisCalculator\Modules;
 
+use GisCalculator\Core\ModuleInterface;
 
-class Module
+/**
+ * Class Module
+ * @package GisCalculator\Modules
+ */
+class Module implements ModuleInterface
 {
+    /**
+     * Module name
+     * @var string
+     */
+    protected $name;
 
+    /**
+     * Version module
+     * @var string
+     */
+    protected $version;
+
+    /**
+     * Module name
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Version module
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
 }
