@@ -2,10 +2,10 @@
 
 namespace GisCalculator;
 
-use GisCalculator\Core\Distance;
 use GisCalculator\Core\Settings;
 use GisCalculator\Element\Point;
 use GisCalculator\Modules\Module;
+use GisCalculator\Modules\Distance;
 
 class GisCalculator
 {

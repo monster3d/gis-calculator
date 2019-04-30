@@ -1,9 +1,9 @@
 <?php
 
-namespace GisCalculator\Core;
+namespace GisCalculator\Modules;
 
-use \GisCalculator\Element\Point;
-use GisCalculator\Modules\Module;
+use GisCalculator\Core\SettingsInterface;
+use \GisCalculator\Element\Point;;
 
 class Distance extends Module
 {
