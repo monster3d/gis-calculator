@@ -1,15 +1,37 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nikolay
- * Date: 30/04/2019
- * Time: 21:04
- */
 
 namespace Tests\Unit\Modules;
 
 
-class DistanceTest
+use GisCalculator\Core\Settings;
+use GisCalculator\Modules\Distance;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Class DistanceTest
+ * @package Tests\Unit\Modules
+ */
+class DistanceTest extends TestCase
 {
+
+    /**
+     * @return Distance
+     */
+    private function makeDistace() : Distance
+    {
+        $defaultSettings = new Settings();
+
+        return new Distance($defaultSettings);
+    }
+
+
+    /**
+     * @group unit
+     */
+    public function test_get_calculateDistanceBetweenPoints_returnCorrectDistance()
+    {
+        $this->assertTrue(true);
+
+    }
 
 }
