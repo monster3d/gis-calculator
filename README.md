@@ -3,11 +3,11 @@
 ## Description
 Simple gis data calculation
 
-### Feature
-#### Distance modules:
+## Feature
+### Distance modules:
 Distance module add ability calculation distance between two points
 
-Use:
+#### Use 
 ** ** 
 ```php
 <?php
@@ -43,11 +43,11 @@ Go way:
     if (null !== $distance) {
         //Get private setting manager
         $setting = $distance->getSetting();
-        //Add setting key round value 3
+        //Add setting key 'round' value 3
         $setting->setValue(\GisCalculator\Core\SettingsKeys::ROUND, 3);
     }
 ```
-Support settings:   
+#### Support settings
 * Round `SettingsKeys::ROUND` set integer value 1,2,3...n   
 * Metric `SettingsKeys::METRIC` set value from select `Metric::CENTIMETERS` or `Metric::KILOMETERS`
 
