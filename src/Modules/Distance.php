@@ -5,6 +5,13 @@ namespace GisCalculator\Modules;
 use GisCalculator\Core\SettingsInterface;
 use \GisCalculator\Element\Point;;
 
+/**
+ * Class Distance
+ * @package GisCalculator\Modules
+ *
+ * This use circle formula
+ * (x - x')^2 + (y - y')^2 <= R^2
+ */
 class Distance extends Module
 {
     /**
@@ -54,8 +61,7 @@ class Distance extends Module
         $y = $angle($from->getLongitude(), $to->getLongitude());
 
         $circle = ($x + cos(deg2rad($from->getLatitude())) * cos(deg2rad($to->getLatitude())) * $y);
-        $distance = acos(sqrt($circle)) * self::ELLIPSOID;
-
+        $distance = 2 * asin(sqrt($circle)) * self::ELLIPSOID;
 
         return $this->prepareResult($distance);
     }
