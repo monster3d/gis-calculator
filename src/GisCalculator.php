@@ -2,11 +2,18 @@
 
 namespace GisCalculator;
 
+use GisCalculator\Core\Metric;
 use GisCalculator\Core\Settings;
+use GisCalculator\Core\SettingsKeys;
+use GisCalculator\Element\CollectionPoints;
 use GisCalculator\Element\Point;
 use GisCalculator\Modules\Module;
 use GisCalculator\Modules\Distance;
 
+/**
+ * Class GisCalculator
+ * @package GisCalculator
+ */
 final class GisCalculator
 {
     /**
@@ -30,6 +37,31 @@ final class GisCalculator
     public function getDistance(Point $from, Point $to) : float
     {
         return $this->modules['distance']->get($from, $to);
+    }
+
+    /**
+     * @param Point $center
+     * @param int $radius
+     * @param CollectionPoints $collectionPoints
+     * @return array
+     */
+    public function gisWithRadius(Point $center, int $radius, CollectionPoints $collectionPoints)
+    {
+        $result = [];
+        $this
+            ->getModule('distance')
+            ->getSetting()
+            ->setValue(SettingsKeys::METRIC, Metric::KILOMETERS);
+
+        foreach ($collectionPoints->getIterator() as $point) {
+            $distance = $this->modules['distance']->get($center, $point);
+
+            if ($distance <= $radius) {
+                $result[] = $point;
+            }
+        }
+
+        return $result;
     }
 
     /**
