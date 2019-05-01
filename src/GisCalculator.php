@@ -7,7 +7,7 @@ use GisCalculator\Element\Point;
 use GisCalculator\Modules\Module;
 use GisCalculator\Modules\Distance;
 
-class GisCalculator
+final class GisCalculator
 {
     /**
      * @var array
