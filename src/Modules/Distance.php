@@ -2,7 +2,8 @@
 
 namespace GisCalculator\Modules;
 
-use GisCalculator\Core\SettingsInterface;
+use \GisCalculator\Core\Metric;
+use GisCalculator\Core\SettingsKeys;
 use \GisCalculator\Element\Point;;
 
 /**
@@ -18,27 +19,13 @@ class Distance extends Module
      * Module name
      * @var string
      */
-    protected $name = 'Distance';
+    protected $name = 'distance';
 
     /**
      * Current version
      * @var string
      */
     protected $version = '1.0.0';
-
-    /**
-     * @var SettingsInterface
-     */
-    private $settings;
-
-    /**
-     * Distance constructor.
-     * @param SettingsInterface $settings
-     */
-    public function __construct(SettingsInterface $settings)
-    {
-        $this->settings = $settings;
-    }
 
     /**
      * This Krasovsky's ellipsoid constant
@@ -71,6 +58,28 @@ class Distance extends Module
      * @return float
      */
     private function prepareResult(float $result) : float {
+        $round = $this->settings->getValue(SettingsKeys::ROUND);
+        $precision = 2;
+
+        if (null !== $round) {
+            $precision = (int) $round;
+        }
+
+        $result = round($result, $precision);
+
+        $metric = $this->settings->getValue(SettingsKeys::METRIC);
+        switch ($metric) {
+            case Metric::CENTIMETERS:
+                $result = $result * 100;
+                break;
+            case Metric::KILOMETERS:
+                $result = $result / 1000;
+                break;
+            default:
+                // Default as meters
+                break;
+        }
+
         return $result;
     }
 }

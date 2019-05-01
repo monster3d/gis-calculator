@@ -11,7 +11,7 @@ class Settings implements SettingsInterface
     /**
      * @var array
      */
-    private $settingContainer;
+    private $settingContainer = [];
 
     /**
      * @param string $key
@@ -31,9 +31,12 @@ class Settings implements SettingsInterface
     /**
      * @param string $key
      * @param string $value
+     * @return SettingsInterface
      */
-    public function setValue(string $key, string $value)
+    public function setValue(string $key, string $value): SettingsInterface
     {
         $this->settingContainer[$key] = $value;
+
+        return $this;
     }
 }
