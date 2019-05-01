@@ -11,7 +11,7 @@ class Settings implements SettingsInterface
     /**
      * @var array
      */
-    private $settingContainer;
+    private $settingContainer = [];
 
     /**
      * @param string $key
