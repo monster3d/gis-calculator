@@ -29,7 +29,21 @@ final class GisCalculator
      */
     public function getDistance(Point $from, Point $to) : float
     {
-        return $this->modules['Distance']->get($from, $to);
+        return $this->modules['distance']->get($from, $to);
+    }
+
+    /**
+     * @param string $name
+     * @return Module|null
+     */
+    public function &getModule(string $name) : ?Module
+    {
+        $result = null;
+        if (array_key_exists($name, $this->modules)) {
+            $result = $this->modules[$name];
+        }
+
+        return $result;
     }
 
     /**
@@ -38,7 +52,7 @@ final class GisCalculator
     private function registerModule(Module $module) : void
     {
         $moduleName = $module->getName();
-        $this->modules[$moduleName] = $module;
+        $this->modules[strtolower($moduleName)] = $module;
     }
 
     /**
@@ -49,5 +63,26 @@ final class GisCalculator
     public static function makePoint($latitude, $longitude) : Point
     {
         return new Point((float) $latitude, (float) $longitude);
+    }
+
+    /**
+     * @return array
+     */
+    public function getModulesInfo() : array
+    {
+        $result = [];
+
+        /** @var Module $module */
+        foreach ($this->modules as $module) {
+            $info = [
+                'name'        => $module->getName(),
+                'version'     => $module->getVersion(),
+                'description' => $module->getDescription(),
+            ];
+
+            $result[] = $info;
+        }
+
+        return $result;
     }
 }
