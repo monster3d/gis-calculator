@@ -26,11 +26,30 @@ $distance = $gitCalculator->getDistance($pointA, $pointB);
 //** $distance float 750.8 */
 
 ```
-<b>Warning: </b> metric system uses meters only
+<b>Warning: </b> metric system uses meters as default
 
-Todo: 
-* Round
-* Metric cm, m, km
+#### Settings
+
+If need change default settings this module 
+
+Go way:
+```php
+    // Use main facade
+    $gitCalculator = new \GisCalculator\GisCalculator();
+    
+    // Call target module by name
+    $distance = $gitCalculator->getModules('distance');
+    
+    if (null !== $distance) {
+        //Get private setting manager
+        $setting = $distance->getSetting();
+        //Add setting key round value 3
+        $setting->setValue(\GisCalculator\Core\SettingsKeys::ROUND, 3);
+    }
+```
+Support settings:   
+* Round `SettingsKeys::ROUND` set integer value 1,2,3...n   
+* Metric `SettingsKeys::METRIC` set value from select `Metric::CENTIMETERS` or `Metric::KILOMETERS`
 
 ## Contribution
 ....
