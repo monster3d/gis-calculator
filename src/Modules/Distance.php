@@ -2,6 +2,7 @@
 
 namespace GisCalculator\Modules;
 
+use GisCalculator\Core\Metric;
 use GisCalculator\Core\SettingsInterface;
 use \GisCalculator\Element\Point;;
 
@@ -71,6 +72,28 @@ class Distance extends Module
      * @return float
      */
     private function prepareResult(float $result) : float {
+        $round = $this->settings->getValue('round');
+        $precision = 2;
+
+        if (null !== $round) {
+            $precision = (int) $round;
+        }
+
+        $result = round($result, $precision);
+
+        $metric = $this->settings->getValue('metric');
+        switch ($metric) {
+            case Metric::CENTIMETERS:
+                $result = $result * 100;
+                break;
+            case Metric::KILOMETERS:
+                $result = $result / 1000;
+                break;
+            default:
+                // Default as meters
+                break;
+        }
+
         return $result;
     }
 }
