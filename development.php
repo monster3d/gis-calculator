@@ -15,4 +15,11 @@ $pointB = \GisCalculator\GisCalculator::makePoint($lat2, $lng2);
 
 printf(sprintf("Value: %s\n", $gitCalculator->getDistance($pointA, $pointB)));
 
+$collection = new \GisCalculator\Element\CollectionPoints();
+$collection->setPoint($pointA)->setPoint($pointB);
+
+foreach ($collection->getIterator() as $p) {
+    print_r($p->getLatitude() . PHP_EOL);
+}
+
 
