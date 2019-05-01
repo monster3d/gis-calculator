@@ -51,6 +51,28 @@ Go way:
 * Round `SettingsKeys::ROUND` set integer value 1,2,3...n   
 * Metric `SettingsKeys::METRIC` set value from select `Metric::CENTIMETERS` or `Metric::KILOMETERS`
 
+## Require this package with Composer
+
+Install this package through Composer. Edit your project's composer.json file to require monster3d/gis-calculator
+
+composer.json
+
+```json
+{
+    "name": "yourproject/yourproject",
+    "type": "project",
+    "require": {
+        "monster3d/gis-calculator": "*"
+    }
+}
+```
+
+Or command line
+
+```bash
+composer require monster3d/gis-calculator
+```
+
 ## Contribution
 ....
 
