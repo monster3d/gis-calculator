@@ -1,5 +1,6 @@
 # gis-calculator
 [![Build Status](https://travis-ci.com/monster3d/gis-calculator.svg?branch=master)](https://travis-ci.com/monster3d/gis-calculator)
+[![codecov](https://codecov.io/gh/monster3d/gis-calculator/branch/master/graph/badge.svg)](https://codecov.io/gh/monster3d/gis-calculator)
 ## Description
 Simple gis data calculation
 
