@@ -2,11 +2,19 @@
 
 namespace GisCalculator;
 
+use GisCalculator\Core\Metric;
 use GisCalculator\Core\Settings;
+use GisCalculator\Core\SettingsKeys;
+use GisCalculator\Element\CollectionPoints;
 use GisCalculator\Element\Point;
+use GisCalculator\Element\Radius;
 use GisCalculator\Modules\Module;
 use GisCalculator\Modules\Distance;
 
+/**
+ * Class GisCalculator
+ * @package GisCalculator
+ */
 final class GisCalculator
 {
     /**
@@ -30,6 +38,60 @@ final class GisCalculator
     public function getDistance(Point $from, Point $to) : float
     {
         return $this->modules['distance']->get($from, $to);
+    }
+
+
+    /**
+     * @param Point $center
+     * @param Radius $radius
+     * @param CollectionPoints $collectionPoints
+     * @return array
+     */
+    public function gisWithCollectionInRadius(Point $center, Radius $radius, CollectionPoints $collectionPoints) : array
+    {
+        $result = [];
+
+        foreach ($collectionPoints->getIterator() as $point) {
+            if ($this->gisWithPointInRadius($center, $point, $radius)) {
+                $result[] = $point;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param Point $center
+     * @param Point $point
+     * @param Radius $radius
+     * @return bool
+     */
+    public function gisWithPointInRadius(Point $center, Point $point, Radius $radius) : bool
+    {
+        $result = false;
+        $distanceSettings = $this
+            ->getModule('distance')
+            ->getSetting();
+
+        switch ($radius->getMetric()) {
+            case Metric::KILOMETERS:
+                $distanceSettings->setValue(SettingsKeys::METRIC, Metric::KILOMETERS);
+                break;
+            case Metric::CENTIMETERS:
+                $distanceSettings->setValue(SettingsKeys::METRIC, Metric::CENTIMETERS);
+                break;
+            default:
+                $distanceSettings->setValue(SettingsKeys::METRIC, Metric::KILOMETERS);
+                break;
+        }
+
+        $distance = $this->modules['distance']->get($center, $point);
+
+        if ($distance <= $radius->getValue()) {
+            $result = true;
+        }
+
+        return $result;
     }
 
     /**
@@ -56,6 +118,8 @@ final class GisCalculator
     }
 
     /**
+     * Build point
+     *
      * @param $latitude
      * @param $longitude
      * @return Point
@@ -63,6 +127,18 @@ final class GisCalculator
     public static function makePoint($latitude, $longitude) : Point
     {
         return new Point((float) $latitude, (float) $longitude);
+    }
+
+    /**
+     * Build radius
+     *
+     * @param int $radius
+     * @param string $metric
+     * @return Radius
+     */
+    public static function makeRadius(int $radius, $metric = Metric::KILOMETERS) : Radius
+    {
+        return new Radius($radius, $metric);
     }
 
     /**
