@@ -33,7 +33,7 @@ $pointCollection
     ->setPoint($point2)
     ->setPoint($point3);
 
-$radius = \GisCalculator\GisCalculator::makeRadius(5000000, \GisCalculator\Core\Metric::CENTIMETERS);
+$radius = \GisCalculator\GisCalculator::makeRadius(10, \GisCalculator\Core\Metric::KILOMETERS);
 
 $result = $gitCalculator->gisWithCollectionInRadius($pointCenter, $radius, $pointCollection);
 
