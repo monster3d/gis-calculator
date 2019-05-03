@@ -65,7 +65,7 @@ Gis modules with the ability to quickly find the desired points in the circle al
     $point = \GisCalculator\GisCalculator::makePoint(56.830160, 60.630271);
     // Create need search radius = 10 km
     $radius = \GisCalculator\GisCalculator::makeRadius(10, \GisCalculator\Core\Metric::KILOMETERS);
-    // Search point it radius
+    // Search point in radius
     $search = $gitCalculator->gisWithPointInRadius($center, $point, $radius);
     
     if ($search) {
