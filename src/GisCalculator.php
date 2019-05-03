@@ -8,6 +8,7 @@ use GisCalculator\Core\SettingsKeys;
 use GisCalculator\Element\CollectionPoints;
 use GisCalculator\Element\Point;
 use GisCalculator\Element\Radius;
+use GisCalculator\Modules\Intersection;
 use GisCalculator\Modules\Module;
 use GisCalculator\Modules\Distance;
 
@@ -22,12 +23,19 @@ final class GisCalculator
      */
     private $modules = [];
 
+    /**
+     * GisCalculator constructor.
+     */
     public function __construct()
     {
-        $defaultSettings = new Settings();
-        $distanceModule  = new Distance($defaultSettings);
+        $defaultDistanceSettings = new Settings();
+        $defaultIntersectionSettings = new Settings();
+
+        $distanceModule  = new Distance($defaultDistanceSettings);
+        $intersectionModule = new Intersection($defaultIntersectionSettings);
 
         $this->registerModule($distanceModule);
+        $this->registerModule($intersectionModule);
     }
 
     /**
@@ -95,6 +103,20 @@ final class GisCalculator
     }
 
     /**
+     * @param Point $pointA1
+     * @param Point $pointA2
+     * @param Point $pointB1
+     * @param Point $pointB2
+     * @return Point|null
+     */
+    public function findGisPointIntersection(Point $pointA1, Point $pointA2, Point $pointB1, Point $pointB2) : ?Point
+    {
+        return $this->modules['intersection']->get($pointA1, $pointA2, $pointB1, $pointB2);
+    }
+
+    /**
+     * Get module by name
+     *
      * @param string $name
      * @return Module|null
      */
@@ -142,6 +164,7 @@ final class GisCalculator
     }
 
     /**
+     * Get all registered modules
      * @return array
      */
     public function getModulesInfo() : array
