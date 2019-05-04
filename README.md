@@ -39,7 +39,7 @@ Go way:
     $gitCalculator = new \GisCalculator\GisCalculator();
     
     // Call target module by name
-    $distance = $gitCalculator->getModules('distance');
+    $distance = $gitCalculator->getModule('distance');
     
     if (null !== $distance) {
         //Get private setting manager
