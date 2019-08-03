@@ -8,8 +8,7 @@ Simple gis data calculation
 ### Distance:
 Distance module add ability calculation distance between two points
 
-#### Use 
-** ** 
+#### Use: 
 ```php
 <?php
 
