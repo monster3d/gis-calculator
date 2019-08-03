@@ -19,12 +19,12 @@ class GitCalculatorTest extends TestCase
     /**
      * @return GisCalculator
      */
-   private function makeGisCalculator() : GisCalculator
+   private function makeGisCalculator(): GisCalculator
    {
        return new GisCalculator();
    }
 
-   private function makePoint(float $latitude, float $longitude) : Point
+   private function makePoint(float $latitude, float $longitude): Point
    {
        return new Point($latitude, $longitude);
    }
@@ -34,7 +34,7 @@ class GitCalculatorTest extends TestCase
      * @param string $metric
      * @return Radius
      */
-   private function makeRadius(int $value, string $metric) : Radius
+   private function makeRadius(int $value, string $metric): Radius
    {
        return new Radius($value, $metric);
    }

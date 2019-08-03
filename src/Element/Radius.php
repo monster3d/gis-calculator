@@ -27,7 +27,7 @@ class Radius
     /**
      * @return int
      */
-    public function getValue() : int
+    public function getValue(): int
     {
         return $this->value;
     }
@@ -35,7 +35,7 @@ class Radius
     /**
      * @return string
      */
-    public function getMetric() : string
+    public function getMetric(): string
     {
         return $this->metric;
     }

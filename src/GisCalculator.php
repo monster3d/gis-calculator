@@ -55,7 +55,7 @@ final class GisCalculator
      * @param CollectionPoints $collectionPoints
      * @return array
      */
-    public function gisWithCollectionInRadius(Point $center, Radius $radius, CollectionPoints $collectionPoints) : array
+    public function gisWithCollectionInRadius(Point $center, Radius $radius, CollectionPoints $collectionPoints): array
     {
         $result = [];
 
@@ -74,7 +74,7 @@ final class GisCalculator
      * @param Radius $radius
      * @return bool
      */
-    public function gisWithPointInRadius(Point $center, Point $point, Radius $radius) : bool
+    public function gisWithPointInRadius(Point $center, Point $point, Radius $radius): bool
     {
         $result = false;
         $distanceSettings = $this
@@ -109,7 +109,7 @@ final class GisCalculator
      * @param Point $pointB2
      * @return Point|null
      */
-    public function findGisPointIntersection(Point $pointA1, Point $pointA2, Point $pointB1, Point $pointB2) : ?Point
+    public function findGisPointIntersection(Point $pointA1, Point $pointA2, Point $pointB1, Point $pointB2): ?Point
     {
         return $this->modules['intersection']->get($pointA1, $pointA2, $pointB1, $pointB2);
     }
@@ -120,7 +120,7 @@ final class GisCalculator
      * @param string $name
      * @return Module|null
      */
-    public function &getModule(string $name) : ?Module
+    public function &getModule(string $name): ?Module
     {
         $result = null;
         if (array_key_exists($name, $this->modules)) {
@@ -133,7 +133,7 @@ final class GisCalculator
     /**
      * @param Module $module
      */
-    private function registerModule(Module $module) : void
+    private function registerModule(Module $module): void
     {
         $moduleName = $module->getName();
         $this->modules[strtolower($moduleName)] = $module;
@@ -146,7 +146,7 @@ final class GisCalculator
      * @param $longitude
      * @return Point
      */
-    public static function makePoint($latitude, $longitude) : Point
+    public static function makePoint($latitude, $longitude): Point
     {
         return new Point((float) $latitude, (float) $longitude);
     }
@@ -158,7 +158,7 @@ final class GisCalculator
      * @param string $metric
      * @return Radius
      */
-    public static function makeRadius(int $radius, $metric = Metric::KILOMETERS) : Radius
+    public static function makeRadius(int $radius, $metric = Metric::KILOMETERS): Radius
     {
         return new Radius($radius, $metric);
     }
@@ -167,7 +167,7 @@ final class GisCalculator
      * Get all registered modules
      * @return array
      */
-    public function getModulesInfo() : array
+    public function getModulesInfo(): array
     {
         $result = [];
 

@@ -18,7 +18,7 @@ class IntersectionTest extends TestCase
      * @todo Replace settings to mock object
      * @return Intersection
      */
-    private function makeIntersection() : Intersection
+    private function makeIntersection(): Intersection
     {
         return new Intersection(new Settings());
     }
@@ -28,7 +28,7 @@ class IntersectionTest extends TestCase
      * @param float $longitude
      * @return Point
      */
-    private function makePoint(float $latitude, float $longitude) : Point
+    private function makePoint(float $latitude, float $longitude): Point
     {
         return new Point($latitude, $longitude);
     }

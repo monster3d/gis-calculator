@@ -43,7 +43,7 @@ class CollectionPoints
      * @param array $coordinate
      * @return CollectionPoints
      */
-    public function setArrayCoordinate(array $coordinate) : self
+    public function setArrayCoordinate(array $coordinate): self
     {
         foreach ($coordinate as $arrayPoint) {
             $point = new Point($arrayPoint[0], $arrayPoint[1]);
@@ -56,7 +56,7 @@ class CollectionPoints
     /**
      * @return Generator
      */
-    public function getIterator() : Generator
+    public function getIterator(): Generator
     {
         yield from $this->points;
     }

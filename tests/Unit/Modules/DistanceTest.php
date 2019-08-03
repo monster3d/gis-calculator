@@ -18,7 +18,7 @@ class DistanceTest extends TestCase
      * @param $mockSettings
      * @return Distance
      */
-    private function makeDistance($mockSettings) : Distance
+    private function makeDistance($mockSettings): Distance
     {
         return new Distance($mockSettings);
     }
@@ -28,7 +28,7 @@ class DistanceTest extends TestCase
      * @param float $longitude
      * @return Point
      */
-    private function makePoint(float $latitude, float $longitude) : Point
+    private function makePoint(float $latitude, float $longitude): Point
     {
         return new Point($latitude, $longitude);
     }

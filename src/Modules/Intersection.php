@@ -22,14 +22,14 @@ class Intersection extends Module
     protected $name = 'Intersection';
 
     /**
-     * @todo need optimisation this method
+     * @todo need optimization this method
      * @param Point $pointA1
      * @param Point $pointA2
      * @param Point $pointB1
      * @param Point $pointB2
      * @return Point|null
      */
-    public function get(Point $pointA1, Point $pointA2, Point $pointB1, Point $pointB2) : ?Point
+    public function get(Point $pointA1, Point $pointA2, Point $pointB1, Point $pointB2): ?Point
     {
         $a1 = $pointA1->getLongitude() - $pointA2->getLongitude();
         $b1 = $pointA2->getLatitude() - $pointA1->getLatitude();
