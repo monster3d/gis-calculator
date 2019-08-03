@@ -8,8 +8,7 @@ Simple gis data calculation
 ### Distance:
 Distance module add ability calculation distance between two points
 
-#### Use 
-** ** 
+#### Use: 
 ```php
 <?php
 
@@ -53,9 +52,9 @@ Go way:
 * Metric `SettingsKeys::METRIC` set value from select `Metric::CENTIMETERS` or `Metric::KILOMETERS`
 
 ### Gis With:
-Gis modules with the ability to quickly find the desired points in the circle along the radius
-#### Use
-** **
+The gis module with the ability to quickly find the desired points in the circle along the radius
+#### Use:  
+
 ```php
     // Use main facade
     $gitCalculator = new \GisCalculator\GisCalculator();
@@ -65,7 +64,7 @@ Gis modules with the ability to quickly find the desired points in the circle al
     $point = \GisCalculator\GisCalculator::makePoint(56.830160, 60.630271);
     // Create need search radius = 10 km
     $radius = \GisCalculator\GisCalculator::makeRadius(10, \GisCalculator\Core\Metric::KILOMETERS);
-    // Search point it radius
+    // Search point in radius
     $search = $gitCalculator->gisWithPointInRadius($center, $point, $radius);
     
     if ($search) {
@@ -95,6 +94,29 @@ Gis modules with the ability to quickly find the desired points in the circle al
     }
 
 ```
+### Intersect:
+The intersection module can easily determine if two lines intersect
+#### Use:
+```php
+    // Use main facade
+    $gitCalculator = new \GisCalculator\GisCalculator();
+    // Create point A as from
+    $pointA1 = \GisCalculator\GisCalculator::makePoint(56.830794, 60.636087);
+    // Create point A as to
+    $pointA2 = \GisCalculator\GisCalculator::makePoint(56.830794, 60.636087);
+    // Create point B as from
+    $pointB1 = \GisCalculator\GisCalculator::makePoint(56.830794, 60.636087);
+    // Create point B as to
+    $pointB2 = \GisCalculator\GisCalculator::makePoint(56.830794, 60.636087);
+    
+    // Run main facade method
+    $intersect = $gisCalculator->findGisPointIntersection($pointA1, $pointA2, $pointB1, $pointB2);
+
+    if (null !== $intersect) {
+        // This point where there was an intersection or null
+    }
+```
+
 ## Require this package with Composer
 
 Install this package through Composer. Edit your project's composer.json file to require monster3d/gis-calculator

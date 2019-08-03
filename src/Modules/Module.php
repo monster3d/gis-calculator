@@ -63,7 +63,7 @@ class Module implements ModuleInterface
     /**
      * @return string
      */
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -71,7 +71,7 @@ class Module implements ModuleInterface
     /**
      * @return SettingsInterface
      */
-    public function &getSetting() : SettingsInterface
+    public function &getSetting(): SettingsInterface
     {
         return $this->settings;
     }

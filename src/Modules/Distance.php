@@ -37,7 +37,7 @@ class Distance extends Module
      * @param Point $to
      * @return float
      */
-    public function get(Point $from, Point $to) : float
+    public function get(Point $from, Point $to): float
     {
         $angle = function(float $from, float $to) {
             $difference = ($from - $to) / 2;
@@ -57,7 +57,8 @@ class Distance extends Module
      * @param float $result
      * @return float
      */
-    private function prepareResult(float $result) : float {
+    private function prepareResult(float $result): float
+    {
         $round = $this->settings->getValue(SettingsKeys::ROUND);
         $precision = 2;
 

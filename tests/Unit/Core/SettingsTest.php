@@ -16,7 +16,7 @@ class SettingsTest extends TestCase
     /**
      * @return Settings
      */
-    private function makeSettings() : Settings
+    private function makeSettings(): Settings
     {
         return new Settings();
     }

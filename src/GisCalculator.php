@@ -8,6 +8,7 @@ use GisCalculator\Core\SettingsKeys;
 use GisCalculator\Element\CollectionPoints;
 use GisCalculator\Element\Point;
 use GisCalculator\Element\Radius;
+use GisCalculator\Modules\Intersection;
 use GisCalculator\Modules\Module;
 use GisCalculator\Modules\Distance;
 
@@ -22,12 +23,19 @@ final class GisCalculator
      */
     private $modules = [];
 
+    /**
+     * GisCalculator constructor.
+     */
     public function __construct()
     {
-        $defaultSettings = new Settings();
-        $distanceModule  = new Distance($defaultSettings);
+        $defaultDistanceSettings = new Settings();
+        $defaultIntersectionSettings = new Settings();
+
+        $distanceModule  = new Distance($defaultDistanceSettings);
+        $intersectionModule = new Intersection($defaultIntersectionSettings);
 
         $this->registerModule($distanceModule);
+        $this->registerModule($intersectionModule);
     }
 
     /**
@@ -47,7 +55,7 @@ final class GisCalculator
      * @param CollectionPoints $collectionPoints
      * @return array
      */
-    public function gisWithCollectionInRadius(Point $center, Radius $radius, CollectionPoints $collectionPoints) : array
+    public function gisWithCollectionInRadius(Point $center, Radius $radius, CollectionPoints $collectionPoints): array
     {
         $result = [];
 
@@ -66,7 +74,7 @@ final class GisCalculator
      * @param Radius $radius
      * @return bool
      */
-    public function gisWithPointInRadius(Point $center, Point $point, Radius $radius) : bool
+    public function gisWithPointInRadius(Point $center, Point $point, Radius $radius): bool
     {
         $result = false;
         $distanceSettings = $this
@@ -95,10 +103,24 @@ final class GisCalculator
     }
 
     /**
+     * @param Point $pointA1
+     * @param Point $pointA2
+     * @param Point $pointB1
+     * @param Point $pointB2
+     * @return Point|null
+     */
+    public function findGisPointIntersection(Point $pointA1, Point $pointA2, Point $pointB1, Point $pointB2): ?Point
+    {
+        return $this->modules['intersection']->get($pointA1, $pointA2, $pointB1, $pointB2);
+    }
+
+    /**
+     * Get module by name
+     *
      * @param string $name
      * @return Module|null
      */
-    public function &getModule(string $name) : ?Module
+    public function &getModule(string $name): ?Module
     {
         $result = null;
         if (array_key_exists($name, $this->modules)) {
@@ -111,7 +133,7 @@ final class GisCalculator
     /**
      * @param Module $module
      */
-    private function registerModule(Module $module) : void
+    private function registerModule(Module $module): void
     {
         $moduleName = $module->getName();
         $this->modules[strtolower($moduleName)] = $module;
@@ -124,7 +146,7 @@ final class GisCalculator
      * @param $longitude
      * @return Point
      */
-    public static function makePoint($latitude, $longitude) : Point
+    public static function makePoint($latitude, $longitude): Point
     {
         return new Point((float) $latitude, (float) $longitude);
     }
@@ -136,15 +158,16 @@ final class GisCalculator
      * @param string $metric
      * @return Radius
      */
-    public static function makeRadius(int $radius, $metric = Metric::KILOMETERS) : Radius
+    public static function makeRadius(int $radius, $metric = Metric::KILOMETERS): Radius
     {
         return new Radius($radius, $metric);
     }
 
     /**
+     * Get all registered modules
      * @return array
      */
-    public function getModulesInfo() : array
+    public function getModulesInfo(): array
     {
         $result = [];
 
